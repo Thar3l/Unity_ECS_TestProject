@@ -1,4 +1,5 @@
 using Code.Zombie.DataComponents;
+using Code.Zombie.Tags;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -15,7 +16,7 @@ namespace Code.Zombie.Systems
         {
             var deltaTime = Time.DeltaTime;
             var curInput = new float2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            Entities.WithoutBurst().ForEach((ref Translation translation, in SpeedData speedData) =>
+            Entities.WithoutBurst().ForEach((ref Translation translation, in SpeedData speedData, in PlayerTag player) =>
             {
                 var currentPosition = translation.Value;
                 translation.Value = new float3(
